@@ -11,4 +11,10 @@ public interface DeptService {
      * @return
      */
     List<Dept> findAll();
+
+    /**
+     * 根据id删除部门
+     * @param id
+     */
+    void deleteById(Integer id);
 }
