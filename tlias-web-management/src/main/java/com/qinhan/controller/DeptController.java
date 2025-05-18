@@ -66,4 +66,23 @@ public class DeptController {
         deptService.add(dept);
         return Result.success();
     }
+
+    /**
+     * 根据id查询部门
+     */
+    //@GetMapping("/depts/{id}")
+    //public Result getInfo(@PathVariable("id") Integer deptId){
+    //    System.out.println("根据id查询部门:"+deptId);
+    //    return Result.success();
+    //}
+
+    /**
+     * 根据id查询部门
+     */
+    @GetMapping("/depts/{id}")
+    public Result getInfo(@PathVariable Integer id){
+        System.out.println("根据id查询部门:"+id);
+        Dept dept = deptService.getById(id);
+        return Result.success(dept);
+    }
 }
