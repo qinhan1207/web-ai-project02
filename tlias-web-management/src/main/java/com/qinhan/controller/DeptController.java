@@ -54,4 +54,16 @@ public class DeptController {
         System.out.println("根据id删除部门数据: id=" + id);
         return Result.success();
     }
+
+    /**
+     * 新增部门
+     * @param dept
+     * @return
+     */
+    @PostMapping("depts")
+    public Result add(@RequestBody Dept dept){
+        System.out.println("添加部门"+dept);
+        deptService.add(dept);
+        return Result.success();
+    }
 }
