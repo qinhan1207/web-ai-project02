@@ -85,4 +85,14 @@ public class DeptController {
         Dept dept = deptService.getById(id);
         return Result.success(dept);
     }
+
+    /**
+     * 修改部门的数据
+     */
+    @PutMapping("/depts")
+    public Result update(@RequestBody Dept dept){
+        System.out.println("修改部门"+dept);
+        deptService.update(dept);
+        return Result.success();
+    }
 }
