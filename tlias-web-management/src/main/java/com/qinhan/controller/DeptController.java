@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@RequestMapping("/depts")
 @RestController
 public class DeptController {
 
@@ -17,7 +17,7 @@ public class DeptController {
     private DeptService deptService;
 
     //@RequestMapping(value = "/depts",method = RequestMethod.GET) // method:指定请求方式
-    @GetMapping("/depts")
+    @GetMapping
     public Result list() {
         System.out.println("查询全部的部门数据");
         List<Dept> deptList = deptService.findAll();
@@ -48,7 +48,7 @@ public class DeptController {
     /**
      * 删除部门 - 方式三：省略@RequestParam（当前端传递的请求参数名与服务器方法形参名一致时）[推荐]
      */
-    @DeleteMapping("/depts")
+    @DeleteMapping
     public Result delete(Integer id){
         deptService.deleteById(id);
         System.out.println("根据id删除部门数据: id=" + id);
@@ -60,7 +60,7 @@ public class DeptController {
      * @param dept
      * @return
      */
-    @PostMapping("depts")
+    @PostMapping
     public Result add(@RequestBody Dept dept){
         System.out.println("添加部门"+dept);
         deptService.add(dept);
@@ -79,7 +79,7 @@ public class DeptController {
     /**
      * 根据id查询部门
      */
-    @GetMapping("/depts/{id}")
+    @GetMapping("/{id}")
     public Result getInfo(@PathVariable Integer id){
         System.out.println("根据id查询部门:"+id);
         Dept dept = deptService.getById(id);
@@ -89,7 +89,7 @@ public class DeptController {
     /**
      * 修改部门的数据
      */
-    @PutMapping("/depts")
+    @PutMapping
     public Result update(@RequestBody Dept dept){
         System.out.println("修改部门"+dept);
         deptService.update(dept);
