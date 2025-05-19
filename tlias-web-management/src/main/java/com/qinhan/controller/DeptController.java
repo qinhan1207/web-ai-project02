@@ -4,14 +4,20 @@ import com.qinhan.pojo.Dept;
 import com.qinhan.pojo.Result;
 import com.qinhan.service.DeptService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RequestMapping("/depts")
 @RestController
 public class DeptController {
+
+    //private static final Logger log = LoggerFactory.getLogger(DeptController.class); // 固定的
 
     @Autowired
     private DeptService deptService;
@@ -19,7 +25,8 @@ public class DeptController {
     //@RequestMapping(value = "/depts",method = RequestMethod.GET) // method:指定请求方式
     @GetMapping
     public Result list() {
-        System.out.println("查询全部的部门数据");
+        //System.out.println("查询全部的部门数据");
+        log.info("查询全部的部门数据");
         List<Dept> deptList = deptService.findAll();
         return Result.success(deptList);
     }
@@ -50,8 +57,9 @@ public class DeptController {
      */
     @DeleteMapping
     public Result delete(Integer id){
+        log.info("根据id删除部门数据:{}",id);
+        //System.out.println("根据id删除部门数据: id=" + id);
         deptService.deleteById(id);
-        System.out.println("根据id删除部门数据: id=" + id);
         return Result.success();
     }
 
@@ -62,7 +70,8 @@ public class DeptController {
      */
     @PostMapping
     public Result add(@RequestBody Dept dept){
-        System.out.println("添加部门"+dept);
+        //System.out.println("添加部门"+dept);
+        log.info("新增部门{}",dept);
         deptService.add(dept);
         return Result.success();
     }
@@ -81,7 +90,8 @@ public class DeptController {
      */
     @GetMapping("/{id}")
     public Result getInfo(@PathVariable Integer id){
-        System.out.println("根据id查询部门:"+id);
+        //System.out.println("根据id查询部门:"+id);
+        log.info("根据id查询部门:{}",id);
         Dept dept = deptService.getById(id);
         return Result.success(dept);
     }
@@ -91,7 +101,8 @@ public class DeptController {
      */
     @PutMapping
     public Result update(@RequestBody Dept dept){
-        System.out.println("修改部门"+dept);
+        //System.out.println("修改部门:"+dept);
+        log.info("修改部门:{}",dept);
         deptService.update(dept);
         return Result.success();
     }
