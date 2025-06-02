@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ClazzServiceImpl implements ClazzService {
@@ -20,5 +21,10 @@ public class ClazzServiceImpl implements ClazzService {
         clazz.setUpdateTime(LocalDateTime.now());
         // 2.调用mapper接口
         clazzMapper.add(clazz);
+    }
+
+    @Override
+    public List<Clazz> findAll() {
+        return clazzMapper.findAll();
     }
 }
