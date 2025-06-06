@@ -23,5 +23,8 @@ public interface EmpService {
      */
     PageResult<Emp> page(EmpQueryParam empQueryParam);
 
-
+    /**
+     * 新增员工
+     */
+    void save(Emp emp);
 }
