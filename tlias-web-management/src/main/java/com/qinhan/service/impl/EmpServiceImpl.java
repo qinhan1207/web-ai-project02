@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.qinhan.mapper.EmpMapper;
 import com.qinhan.pojo.Emp;
+import com.qinhan.pojo.EmpQueryParam;
 import com.qinhan.pojo.PageResult;
 import com.qinhan.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,21 +36,33 @@ public class EmpServiceImpl implements EmpService {
         return new PageResult<Emp>(total, rows);
     }*/
 
-    /**
-     * PageHelper分页查询
-     *
-     * @param page     页码
-     * @param pageSize 每页展示记录数
-     * @return 注意事项：
-     * 1.定义的sql语句结尾不能加分分号
-     * 2.PageHelper仅仅对紧跟在其后的第一个查询语句进行分页处理
-     */
+    ///**
+    // * PageHelper分页查询
+    // *
+    // * @param page     页码
+    // * @param pageSize 每页展示记录数
+    // * @return 注意事项：
+    // * 1.定义的sql语句结尾不能加分分号
+    // * 2.PageHelper仅仅对紧跟在其后的第一个查询语句进行分页处理
+    // */
+    //@Override
+    //public PageResult<Emp> page(Integer page, Integer pageSize, String name, Integer gender, LocalDate begin, LocalDate end) {
+    //    // 1.设置分页参数(PageHelper)
+    //    PageHelper.startPage(page, pageSize);
+    //    // 2.执行查询
+    //    List<Emp> empList = empMapper.list(name, gender, begin, end);
+    //    // 3.解析查询结果，封装参数
+    //    Page<Emp> p = (Page<Emp>) empList;
+    //
+    //    return new PageResult<Emp>(p.getTotal(), p.getResult());
+    //}
+
     @Override
-    public PageResult<Emp> page(Integer page, Integer pageSize, String name, Integer gender, LocalDate begin, LocalDate end) {
+    public PageResult<Emp> page(EmpQueryParam empQueryParam) {
         // 1.设置分页参数(PageHelper)
-        PageHelper.startPage(page, pageSize);
+        PageHelper.startPage(empQueryParam.getPage(), empQueryParam.getPageSize());
         // 2.执行查询
-        List<Emp> empList = empMapper.list(name, gender, begin, end);
+        List<Emp> empList = empMapper.list(empQueryParam);
         // 3.解析查询结果，封装参数
         Page<Emp> p = (Page<Emp>) empList;
 
