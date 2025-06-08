@@ -4,10 +4,8 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.qinhan.mapper.EmpExprMapper;
 import com.qinhan.mapper.EmpMapper;
-import com.qinhan.pojo.Emp;
-import com.qinhan.pojo.EmpExpr;
-import com.qinhan.pojo.EmpQueryParam;
-import com.qinhan.pojo.PageResult;
+import com.qinhan.pojo.*;
+import com.qinhan.service.EmpLogService;
 import com.qinhan.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +18,12 @@ import java.util.List;
 
 @Service
 public class EmpServiceImpl implements EmpService {
-
     @Autowired
     private EmpMapper empMapper;
-
     @Autowired
     private EmpExprMapper empExprMapper;
+    @Autowired
+    private EmpLogService empLogService;
 
     ///**
     // * 原始的分页查询
@@ -80,24 +78,27 @@ public class EmpServiceImpl implements EmpService {
     @Transactional(rollbackFor = {Exception.class})  // 事务管理的注解 - 默认出现运行时异常RuntimeException才会回滚
     @Override
     public void save(Emp emp) throws Exception {
-        // 1.保存员工的基本信息
-        emp.setCreateTime(LocalDateTime.now());
-        emp.setUpdateTime(LocalDateTime.now());
-        empMapper.insert(emp);
+        try {
+            // 1.保存员工的基本信息
+            emp.setCreateTime(LocalDateTime.now());
+            emp.setUpdateTime(LocalDateTime.now());
+            empMapper.insert(emp);
 
-        //int i = 1/0;
-        if (true){
-            throw new Exception("出错啦~~");
+            // 2.保存员工的工作经历信息
+            List<EmpExpr> exprList = emp.getExprList();
+            if (!CollectionUtils.isEmpty(exprList)) {
+                // 遍历集合，为empId赋值
+                exprList.forEach(expr -> {
+                    expr.setEmpId(emp.getId());
+                });
+                empExprMapper.insertBatch(exprList);
+            }
+        } finally {
+            // 记录操作日志
+            EmpLog empLog = new EmpLog(null,LocalDateTime.now(),"新增员工"+emp);
+            empLogService.insertLog(empLog);
         }
 
-        // 2.保存员工的工作经历信息
-        List<EmpExpr> exprList = emp.getExprList();
-        if (!CollectionUtils.isEmpty(exprList)) {
-            // 遍历集合，为empId赋值
-            exprList.forEach(expr -> {
-                expr.setEmpId(emp.getId());
-            });
-            empExprMapper.insertBatch(exprList);
-        }
+
     }
 }
