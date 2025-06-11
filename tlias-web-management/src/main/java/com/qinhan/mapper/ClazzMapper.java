@@ -1,6 +1,7 @@
 package com.qinhan.mapper;
 
 import com.qinhan.pojo.Clazz;
+import com.qinhan.pojo.ClazzQueryParam;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -22,4 +23,7 @@ public interface ClazzMapper {
      */
     @Select("select id, name, room, begin_date, end_date, master_id, subject, create_time, update_time from clazz")
     List<Clazz> findAll();
+
+
+    List<Clazz> selectPage(ClazzQueryParam clazzQueryParam);
 }

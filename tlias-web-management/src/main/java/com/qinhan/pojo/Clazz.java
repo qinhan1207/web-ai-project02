@@ -20,4 +20,9 @@ public class Clazz {
     private Integer subject;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
+
+    // 班主任姓名
+    private String masterName;
+    // 开班状态
+    private String status;
 }

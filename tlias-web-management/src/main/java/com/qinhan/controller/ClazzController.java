@@ -1,6 +1,8 @@
 package com.qinhan.controller;
 
 import com.qinhan.pojo.Clazz;
+import com.qinhan.pojo.ClazzQueryParam;
+import com.qinhan.pojo.PageResult;
 import com.qinhan.pojo.Result;
 import com.qinhan.service.ClazzService;
 import lombok.extern.slf4j.Slf4j;
@@ -38,5 +40,15 @@ public class ClazzController {
         log.info("查询所有班级");
         List<Clazz> clazzList = clazzService.findAll();
         return Result.success(clazzList);
+    }
+
+    /**
+     * 分页条件查询所有班级
+     */
+    @GetMapping
+    public Result page(ClazzQueryParam clazzQueryParam){
+        log.info("分页查询:{}",clazzQueryParam);
+        PageResult<Clazz> pageResult = clazzService.page(clazzQueryParam);
+        return Result.success(pageResult);
     }
 }
