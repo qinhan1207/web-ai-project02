@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 员工管理Controller
@@ -49,5 +50,11 @@ public class EmpController {
         log.info("新增员工:{}",emp);
         empService.save(emp);
         return Result.success();
+    }
+
+    @GetMapping("/list")
+    public Result list(){
+        List<Emp> empList = empService.getAllEmp();
+        return Result.success(empList);
     }
 }
