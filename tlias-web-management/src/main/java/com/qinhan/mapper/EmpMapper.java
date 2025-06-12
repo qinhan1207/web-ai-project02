@@ -54,4 +54,10 @@ public interface EmpMapper {
 
     @Select("select id, username, password, name, gender,image, job, salary,  entry_date, dept_id, create_time, update_time from emp")
     List<Emp> selectAll();
+
+    /**
+     * 根据ID批量删除员工的基本信息
+     * @param ids
+     */
+    void deleteByIds(List<Integer> ids);
 }

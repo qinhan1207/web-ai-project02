@@ -30,4 +30,9 @@ public interface EmpService {
     void save(Emp emp) throws Exception;
 
     List<Emp> getAllEmp();
+
+    /**
+     * 批量删除员工信息
+     */
+    void delete(List<Integer> ids);
 }
