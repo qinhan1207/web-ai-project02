@@ -12,4 +12,6 @@ public interface ClazzService {
     List<Clazz> findAll();
 
     PageResult<Clazz> page(ClazzQueryParam clazzQueryParam);
+
+    void removeById(Integer id);
 }
