@@ -58,4 +58,14 @@ public class ClazzServiceImpl implements ClazzService {
 
         return new PageResult<Clazz>(p.getTotal(),p.getResult());
     }
+
+    @Override
+    public void removeById(Integer id) {
+        clazzMapper.deleteById(id);
+    }
+
+    @Override
+    public Clazz findById(Integer id) {
+        return clazzMapper.selectById(id);
+    }
 }

@@ -21,8 +21,6 @@ public class ClazzController {
 
     /**
      * 添加班级功能
-     * @param clazz
-     * @return
      */
     @PostMapping
     public Result add(@RequestBody Clazz clazz){
@@ -33,7 +31,6 @@ public class ClazzController {
 
     /**
      * 查询所有班级信息
-     * @return
      */
     @GetMapping("/list")
     public Result findAll(){
@@ -50,5 +47,23 @@ public class ClazzController {
         log.info("分页查询:{}",clazzQueryParam);
         PageResult<Clazz> pageResult = clazzService.page(clazzQueryParam);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 根据id删除班级信息
+     */
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable Integer id){
+        clazzService.removeById(id);
+        return Result.success();
+    }
+
+    /**
+     * 根据id查询：查询回显
+     */
+    @GetMapping("{id}")
+    public Result findById(@PathVariable Integer id){
+        Clazz clazz = clazzService.findById(id);
+        return Result.success(clazz);
     }
 }
