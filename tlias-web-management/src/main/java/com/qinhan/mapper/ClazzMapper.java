@@ -33,4 +33,6 @@ public interface ClazzMapper {
 
     @Select("select id, name, room, begin_date, end_date, master_id, subject, create_time, update_time from clazz where id = #{id}")
     Clazz selectById(Integer id);
+
+    void update(Clazz clazz);
 }

@@ -70,4 +70,12 @@ public class ClazzServiceImpl implements ClazzService {
         return clazzMapper.selectById(id);
     }
 
+    @Override
+    public void modify(Clazz clazz) {
+        // 补全属性
+        clazz.setUpdateTime(LocalDateTime.now());
+        // 调用mapper接口
+        clazzMapper.update(clazz);
+    }
+
 }

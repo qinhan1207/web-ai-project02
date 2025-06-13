@@ -15,4 +15,19 @@
         </where>
         order by c.update_time desc
     </select>
+
+    <!--更新班级数据-->
+    <update id="update">
+        update clazz
+        <set>
+            <if test="name != null and name !=''">name = #{name},</if>
+            <if test="room != null and room !=''">room = #{room},</if>
+            <if test="beginDate != null">begin_date = #{beginDate},</if>
+            <if test="endDate != null">end_date = #{endDate},</if>
+            <if test="masterId != null">master_id = #{masterId},</if>
+            <if test="subject != null">subject = #{subject},</if>
+        </set>
+        where id = #{id}
+    </update>
+
 </mapper>

@@ -68,4 +68,13 @@ public class ClazzController {
         return Result.success(clazz);
     }
 
+    /**
+     * 根据id修改员工信息
+     */
+    @PutMapping
+    public Result update(@RequestBody Clazz clazz){
+        clazzService.modify(clazz);
+        return Result.success();
+    }
+
 }

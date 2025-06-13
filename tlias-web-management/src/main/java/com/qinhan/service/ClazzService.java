@@ -18,4 +18,5 @@ public interface ClazzService {
 
     Clazz findById(Integer id);
 
+    void modify(Clazz clazz);
 }
