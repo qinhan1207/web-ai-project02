@@ -64,8 +64,10 @@ public class ClazzServiceImpl implements ClazzService {
         clazzMapper.deleteById(id);
     }
 
+
     @Override
     public Clazz findById(Integer id) {
         return clazzMapper.selectById(id);
     }
+
 }

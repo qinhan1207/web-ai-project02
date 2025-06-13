@@ -58,6 +58,7 @@ public class ClazzController {
         return Result.success();
     }
 
+
     /**
      * 根据id查询：查询回显
      */
@@ -66,4 +67,5 @@ public class ClazzController {
         Clazz clazz = clazzService.findById(id);
         return Result.success(clazz);
     }
+
 }
