@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
-import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -17,10 +16,9 @@ import java.util.List;
 public interface EmpMapper {
 
     // -------------------------------------------------原始分页查询的方式------------------------------------
-    /**
-     * 查询总记录数
-     * @return
-     */
+    ///**
+    // * 查询总记录数
+    // */
     //@Select("select count(*) from emp e left join dept d on e.dept_id = d.id")
     //public Long count();
 
@@ -39,8 +37,6 @@ public interface EmpMapper {
 
     /**
      * 条件查询员工信息
-     * @param empQueryParam
-     * @return
      */
     public List<Emp> list(EmpQueryParam empQueryParam);
 
@@ -57,7 +53,16 @@ public interface EmpMapper {
 
     /**
      * 根据ID批量删除员工的基本信息
-     * @param ids
      */
     void deleteByIds(List<Integer> ids);
+
+    /**
+     * 根据id查询员工信息以及工作经历信息
+     */
+    Emp getById(Integer id);
+
+    /**
+     * 根据id更新员工的基本信息
+     */
+    void updateById(Emp emp);
 }
