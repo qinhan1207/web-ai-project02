@@ -37,4 +37,13 @@ public class StudentController {
         studentService.removeBatch(ids);
         return Result.success();
     }
+
+    /**
+     * 添加学生信息
+     */
+    @PostMapping
+    public Result save(@RequestBody Student student){
+        studentService.addStudent(student);
+        return Result.success();
+    }
 }

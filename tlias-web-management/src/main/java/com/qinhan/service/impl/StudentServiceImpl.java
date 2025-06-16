@@ -10,6 +10,7 @@ import com.qinhan.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -31,5 +32,14 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void removeBatch(List<Integer> ids) {
         studentMapper.deleteBatch(ids);
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        // 1.为student补全属性
+        student.setCreateTime(LocalDateTime.now());
+        student.setUpdateTime(LocalDateTime.now());
+        // 2.调用mapper接口
+        studentMapper.insertStudent(student);
     }
 }

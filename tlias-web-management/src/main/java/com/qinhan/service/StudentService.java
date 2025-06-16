@@ -16,4 +16,9 @@ public interface StudentService {
      * 批量删除学生信息
      */
     void removeBatch(List<Integer> ids);
+
+    /**
+     * 添加学生信息
+     */
+    void addStudent(Student student);
 }
