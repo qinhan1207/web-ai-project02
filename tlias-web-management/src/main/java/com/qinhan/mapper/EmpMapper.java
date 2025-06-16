@@ -2,12 +2,12 @@ package com.qinhan.mapper;
 
 import com.qinhan.pojo.Emp;
 import com.qinhan.pojo.EmpQueryParam;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import com.qinhan.pojo.JobOption;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * 操作员工信息的mapper接口
@@ -65,4 +65,10 @@ public interface EmpMapper {
      * 根据id更新员工的基本信息
      */
     void updateById(Emp emp);
+
+    /**
+     * 统计员工职位人数
+     */
+    @MapKey("pos")
+    List<Map<String, Object>> countEmpJobData();
 }
