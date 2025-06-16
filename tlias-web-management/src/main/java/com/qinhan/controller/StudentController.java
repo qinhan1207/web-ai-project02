@@ -7,9 +7,9 @@ import com.qinhan.pojo.StudentQueryParam;
 import com.qinhan.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RequestMapping("/students")
@@ -27,5 +27,14 @@ public class StudentController {
         log.info("分页查询:{}",studentQueryParam);
         PageResult<Student> students = studentService.page(studentQueryParam);
         return Result.success(students);
+    }
+
+    /**
+     * 批量删除
+     */
+    @DeleteMapping("{ids}")
+    public Result removeBatch(@PathVariable List<Integer> ids){
+        studentService.removeBatch(ids);
+        return Result.success();
     }
 }

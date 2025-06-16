@@ -27,4 +27,9 @@ public class StudentServiceImpl implements StudentService {
         Page<Student> p = (Page<Student>) students;
         return new PageResult<>(p.getTotal(),p.getResult());
     }
+
+    @Override
+    public void removeBatch(List<Integer> ids) {
+        studentMapper.deleteBatch(ids);
+    }
 }

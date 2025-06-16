@@ -14,4 +14,8 @@ public interface StudentMapper {
      */
     List<Student> selectPage(StudentQueryParam studentQueryParam);
 
+    /**
+     * 批量删除学生信息
+     */
+    void deleteBatch(List<Integer> ids);
 }

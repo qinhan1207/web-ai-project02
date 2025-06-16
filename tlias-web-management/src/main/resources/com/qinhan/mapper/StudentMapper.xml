@@ -22,4 +22,12 @@
         </where>
         order by s.update_time
     </select>
+
+    <!--批量删除学生信息-->
+    <delete id="deleteBatch">
+        delete from student where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>
