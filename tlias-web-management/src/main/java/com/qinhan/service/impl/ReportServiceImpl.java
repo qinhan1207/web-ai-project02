@@ -19,10 +19,14 @@ public class ReportServiceImpl implements ReportService {
     public JobOption getEmpJobData() {
         // 1.调用mapper接口，获取统计数据
         List<Map<String,Object>> list = empMapper.countEmpJobData();
-        System.out.println(list);
         // 2.组装结果并返回
         List<Object> jobList = list.stream().map(dataMap -> dataMap.get("pos")).toList();
         List<Object> dataList = list.stream().map(dataMap -> dataMap.get("num")).toList();
         return new JobOption(jobList,dataList);
+    }
+
+    @Override
+    public List<Map<String, Object>> getEmpGenderData() {
+        return empMapper.countEmpGenderData();
     }
 }
