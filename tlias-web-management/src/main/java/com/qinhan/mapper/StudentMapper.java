@@ -9,6 +9,9 @@ import java.util.List;
 @Mapper
 public interface StudentMapper {
 
+    /**
+     * 分页条件查询
+     */
     List<Student> selectPage(StudentQueryParam studentQueryParam);
 
 }

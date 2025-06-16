@@ -5,5 +5,8 @@ import com.qinhan.pojo.Student;
 import com.qinhan.pojo.StudentQueryParam;
 
 public interface StudentService {
+    /**
+     * 分页条件查询
+     */
     PageResult<Student> page(StudentQueryParam studentQueryParam);
 }

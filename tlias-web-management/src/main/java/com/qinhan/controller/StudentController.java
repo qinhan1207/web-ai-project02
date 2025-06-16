@@ -25,9 +25,7 @@ public class StudentController {
     @GetMapping
     public Result page(StudentQueryParam studentQueryParam){
         log.info("分页查询:{}",studentQueryParam);
-
         PageResult<Student> students = studentService.page(studentQueryParam);
-
         return Result.success(students);
     }
 }
