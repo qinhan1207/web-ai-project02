@@ -1,5 +1,6 @@
 package com.qinhan.service;
 
+import com.qinhan.pojo.ClazzOption;
 import com.qinhan.pojo.JobOption;
 
 import java.util.List;
@@ -20,4 +21,9 @@ public interface ReportService {
      * 统计学生学历信息
      */
     List<Map<String, Object>> getStudentDegreeData();
+
+    /**
+     * 统计每个班级学生人数
+     */
+    ClazzOption getStudentCountData();
 }

@@ -1,5 +1,7 @@
 package com.qinhan.controller;
 
+import com.qinhan.pojo.Clazz;
+import com.qinhan.pojo.ClazzOption;
 import com.qinhan.pojo.JobOption;
 import com.qinhan.pojo.Result;
 import com.qinhan.service.ReportService;
@@ -43,5 +45,12 @@ public class ReportController {
         log.info("统计学生学历");
         List<Map<String,Object>> list = reportService.getStudentDegreeData();
         return Result.success(list);
+    }
+
+    @GetMapping("/studentCountData")
+    public Result getStudentCountData(){
+        log.info("统计每个班级学生人数");
+        ClazzOption clazzOption = reportService.getStudentCountData();
+        return Result.success(clazzOption);
     }
 }

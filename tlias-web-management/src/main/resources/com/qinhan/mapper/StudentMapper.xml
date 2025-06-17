@@ -65,5 +65,15 @@
         from student group by degree order by value;
     </select>
 
+    <!--统计每个班级对应的学生人数-->
+    <select id="countStudentCountData" resultType="java.util.Map">
+        select
+            c.name,
+            count(*) num
+        from student s left join clazz c on s.clazz_id=c.id
+        group by clazz_id
+        order by num;
+    </select>
+
 
 </mapper>
