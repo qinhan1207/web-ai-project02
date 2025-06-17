@@ -42,4 +42,9 @@ public class StudentServiceImpl implements StudentService {
         // 2.调用mapper接口
         studentMapper.insertStudent(student);
     }
+
+    @Override
+    public Student findStudentById(Integer id) {
+        return studentMapper.selectStudentById(id);
+    }
 }

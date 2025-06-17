@@ -34,6 +34,7 @@ public class StudentController {
      */
     @DeleteMapping("{ids}")
     public Result removeBatch(@PathVariable List<Integer> ids){
+        log.info("批量删除学生信息:{}",ids);
         studentService.removeBatch(ids);
         return Result.success();
     }
@@ -43,7 +44,18 @@ public class StudentController {
      */
     @PostMapping
     public Result save(@RequestBody Student student){
+        log.info("添加学生信息:{}",student);
         studentService.addStudent(student);
         return Result.success();
+    }
+
+    /**
+     * 根据id查询学生信息
+     */
+    @GetMapping("{id}")
+    public Result findStudentById(@PathVariable Integer id){
+        log.info("根据id查询:{}",id);
+        Student student = studentService.findStudentById(id);
+        return Result.success(student);
     }
 }
