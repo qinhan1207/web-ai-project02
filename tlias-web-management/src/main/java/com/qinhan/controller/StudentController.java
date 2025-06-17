@@ -58,4 +58,14 @@ public class StudentController {
         Student student = studentService.findStudentById(id);
         return Result.success(student);
     }
+
+    /**
+     * 修改学生信息
+     */
+    @PutMapping
+    public Result modify(@RequestBody Student student){
+        log.info("修改学生信息:{}",student);
+        studentService.modify(student);
+        return Result.success();
+    }
 }

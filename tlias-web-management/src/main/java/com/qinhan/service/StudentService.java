@@ -26,4 +26,9 @@ public interface StudentService {
      * 根据id查询学生信息
      */
     Student findStudentById(Integer id);
+
+    /**
+     * 修改学生信息
+     */
+    void modify(Student student);
 }
