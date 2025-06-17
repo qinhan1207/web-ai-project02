@@ -3,6 +3,7 @@ package com.qinhan.controller;
 import com.qinhan.pojo.JobOption;
 import com.qinhan.pojo.Result;
 import com.qinhan.service.ReportService;
+import com.qinhan.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,13 @@ public class ReportController {
     public Result getEmpGenderData(){
         log.info("统计员工性别");
         List<Map<String,Object>> list = reportService.getEmpGenderData();
+        return Result.success(list);
+    }
+
+    @GetMapping("/studentDegreeData")
+    public Result getStudentDegreeData(){
+        log.info("统计学生学历");
+        List<Map<String,Object>> list = reportService.getStudentDegreeData();
         return Result.success(list);
     }
 }

@@ -1,6 +1,7 @@
 package com.qinhan.service.impl;
 
 import com.qinhan.mapper.EmpMapper;
+import com.qinhan.mapper.StudentMapper;
 import com.qinhan.pojo.JobOption;
 import com.qinhan.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class ReportServiceImpl implements ReportService {
 
     @Autowired
     private EmpMapper empMapper;
+    @Autowired
+    private StudentMapper studentMapper;
+
     @Override
     public JobOption getEmpJobData() {
         // 1.调用mapper接口，获取统计数据
@@ -27,5 +31,10 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<Map<String, Object>> getEmpGenderData() {
         return empMapper.countEmpGenderData();
+    }
+
+    @Override
+    public List<Map<String, Object>> getStudentDegreeData() {
+        return studentMapper.countStudentDegreeData();
     }
 }

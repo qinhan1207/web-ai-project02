@@ -3,10 +3,12 @@ package com.qinhan.mapper;
 import com.qinhan.pojo.Student;
 import com.qinhan.pojo.StudentQueryParam;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface StudentMapper {
@@ -35,4 +37,10 @@ public interface StudentMapper {
      * 修改学生信息
      */
     void update(Student student);
+
+    /**
+     * 统计学生学历
+     */
+    @MapKey("name")
+    List<Map<String, Object>> countStudentDegreeData();
 }
