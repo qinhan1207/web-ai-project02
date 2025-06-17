@@ -31,4 +31,9 @@ public interface StudentService {
      * 修改学生信息
      */
     void modify(Student student);
+
+    /**
+     * 处理违纪信息
+     */
+    void handleViolation(Integer id,Short score);
 }
