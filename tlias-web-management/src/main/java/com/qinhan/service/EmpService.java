@@ -3,6 +3,7 @@ package com.qinhan.service;
 
 import com.qinhan.pojo.Emp;
 import com.qinhan.pojo.EmpQueryParam;
+import com.qinhan.pojo.LoginInfo;
 import com.qinhan.pojo.PageResult;
 
 import java.util.List;
@@ -40,4 +41,9 @@ public interface EmpService {
     Emp getInfo(Integer id);
 
     void update(Emp emp);
+
+    /**
+     * 员工登录
+     */
+    LoginInfo login(Emp emp);
 }

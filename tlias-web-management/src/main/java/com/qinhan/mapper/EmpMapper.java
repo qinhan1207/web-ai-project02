@@ -2,12 +2,10 @@ package com.qinhan.mapper;
 
 import com.qinhan.pojo.Emp;
 import com.qinhan.pojo.EmpQueryParam;
-import com.qinhan.pojo.JobOption;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * 操作员工信息的mapper接口
@@ -38,7 +36,7 @@ public interface EmpMapper {
     /**
      * 条件查询员工信息
      */
-    public List<Emp> list(EmpQueryParam empQueryParam);
+    List<Emp> list(EmpQueryParam empQueryParam);
 
     /**
      * 新增员工基本信息
@@ -74,4 +72,10 @@ public interface EmpMapper {
 
     @MapKey("name")
     List<Map<String, Object>> countEmpGenderData();
+
+    /**
+     * 根据员工用户名和密码查询信息
+     */
+    @Select("select id, username, name from emp where username = #{username} and password = #{password}")
+    Emp selectByUsernameAndPassword(Emp emp);
 }
