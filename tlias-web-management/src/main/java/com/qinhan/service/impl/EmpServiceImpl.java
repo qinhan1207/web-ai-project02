@@ -7,6 +7,7 @@ import com.qinhan.mapper.EmpMapper;
 import com.qinhan.pojo.*;
 import com.qinhan.service.EmpLogService;
 import com.qinhan.service.EmpService;
+import com.qinhan.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -148,7 +150,12 @@ public class EmpServiceImpl implements EmpService {
         // 2.判断是否存在这个员工，如果存在，组装登录成功信息
         if (e != null){
             log.info("登录成功，员工信息:{}",e);
-            return new LoginInfo(e.getId(),e.getUsername(),e.getName(),"");
+            // 生成jwt令牌
+            HashMap<String, Object> claims = new HashMap<>();
+            claims.put("id",e.getId());
+            claims.put("username",e.getUsername());
+            String jwt = JwtUtils.generateToken(claims);
+            return new LoginInfo(e.getId(),e.getUsername(),e.getName(),jwt);
         }
         // 3.如果不存在，返回null
         return null;
