@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@Aspect // 标识当前是一个AOP类
+//@Aspect // 标识当前是一个AOP类
 @Component
 public class RecordTimeAspect {
 
