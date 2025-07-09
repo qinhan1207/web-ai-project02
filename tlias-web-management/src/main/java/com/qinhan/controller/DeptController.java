@@ -1,5 +1,6 @@
 package com.qinhan.controller;
 
+import com.qinhan.anno.Log;
 import com.qinhan.pojo.Dept;
 import com.qinhan.pojo.Result;
 import com.qinhan.service.DeptService;
@@ -55,6 +56,7 @@ public class DeptController {
     /**
      * 删除部门 - 方式三：省略@RequestParam（当前端传递的请求参数名与服务器方法形参名一致时）[推荐]
      */
+    @Log
     @DeleteMapping
     public Result delete(Integer id){
         log.info("根据id删除部门数据:{}",id);
@@ -68,6 +70,7 @@ public class DeptController {
      * @param dept
      * @return
      */
+    @Log
     @PostMapping
     public Result add(@RequestBody Dept dept){
         //System.out.println("添加部门"+dept);
@@ -99,6 +102,7 @@ public class DeptController {
     /**
      * 修改部门的数据
      */
+    @Log
     @PutMapping
     public Result update(@RequestBody Dept dept){
         //System.out.println("修改部门:"+dept);
