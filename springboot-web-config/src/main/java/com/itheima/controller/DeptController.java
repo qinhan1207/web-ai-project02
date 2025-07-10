@@ -4,11 +4,23 @@ import com.itheima.pojo.Dept;
 import com.itheima.pojo.Result;
 import com.itheima.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+/**
+ * 默认bean时单例的 - singelton ：默认单例的bean是在项目启动时创建的，创建完毕后，会将bean存入IOC容器中
+ */
+//@Lazy // 延迟初始话，延迟到第一次使用的时候再来创建初始化
+
+@Scope("prototype")
 @RestController
 public class DeptController {
+
+    public DeptController(){
+        System.out.println("创建了DeptController对象");
+    }
 
     @Autowired
     private DeptService deptService;
